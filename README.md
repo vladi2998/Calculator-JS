@@ -1,2 +1,6 @@
 # Calculator-JS
-Este repositorio mantiene un calculadora basada en JS, html y css.
+Este repositorio guarda una calculadora desarrollada en JavaScript, html y CSS. 
+
+# Resultados
+
+
