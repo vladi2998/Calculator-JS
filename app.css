@@ -4,7 +4,7 @@
 }
 
 body {
-    margin: 0;
+    margin: 10em;
     background-color: rgb(250, 150, 140);
     display: flex;
     justify-content: center;
