@@ -7,10 +7,10 @@ class Display {
         this.valorActual = '';
         this.valorAnterior = '';
         this.signos = {
-            sumar: '+',
             dividir: '%',
             multiplicar: 'x',
-            restar: '-', 
+            restar: '-',
+            sumar: '+', 
         }
     }
 
@@ -27,6 +27,13 @@ class Display {
 
     borrarTodo() {
         this.valorActual = '';
+        this.tipoOperacion = undefined
+        this.imprimir();
+    }
+
+    operacion(operador){
+        this.valorActual = operador;
+        this.tipoOperacion = operador;
         this.imprimir();
     }
 
