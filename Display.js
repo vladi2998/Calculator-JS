@@ -17,10 +17,21 @@ class Display {
     agregarNumero(numero) {
         if(numero === '0' && this.valorActual === '0') return
         this.valorActual = this.valorActual.toString() + numero.toString();
-        this.imprimirValores();
+        this.imprimir();
+    }
+    
+    borrar() {
+        this.valorActual = this.valorActual.toString().slice(0,-1);
+        this.imprimir();
     }
 
-    imprimirValores() {
+    borrarTodo() {
+        this.valorActual = '';
+        this.imprimir();
+    }
+
+    imprimir() {
         this.displayValores.textContent = this.valorActual;
     }
+
 }
