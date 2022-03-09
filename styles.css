@@ -1,11 +1,11 @@
 * {
     font-family: 'Hubballi', cursive;  
-    color: darkslategray;
+    color: lightgray;
 }
 
 body {
     margin: 0;
-    background-color: rgb(2, 150, 90);
+    background-color: rgb(250, 150, 140);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,21 +14,84 @@ body {
 .calculadora {
     display: grid;
     grid-template-columns: repeat(4, 50px);
-    grid-template-rows: repeat(5, 50px);
+    grid-template-rows: 100px repeat(5, 50px);
     padding: 10px;
     background-color: aquamarine;
     border-radius: 15px;
+    box-shadow: 0px 0px 0px 5px rgb(2, 150, 90);
     align-items: center;
-}
-
-button{
-    cursor: pointer;
-    padding: 0;
-    border-radius: 15px;
-    background-color: rgb(2, 150, 90);
 }
 
 .pantalla{
     grid-column: 1 / -1;
     text-align: right;
+    background-color: rgb(2, 2, 50);
+    border-radius: 5px;
+    height: 75%;
+    box-shadow: 0px 0px 0px 5px darkgray;
+    justify-content: space-between;
+    word-break: break-all;
+}
+
+button{
+    cursor: pointer;
+    padding: 0;
+    width: 90%;
+    border-radius: 10px;
+    background-color: rgb(2, 150, 90);
+    border: none;
+    box-shadow: 0px 0px 0px 2px rgb(0, 60, 60);
+    font-size: 1.5em;
+}
+
+button:active {
+    background-color: rgb(0, 255, 170);
+}
+
+.col-1{
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    height: 95%;
+    justify-content: space-between;
+}
+
+.col-2{
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+    height: 95%;
+    justify-content: space-between;
+}
+
+.col-3{
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 4 / 5;
+    height: 95%;
+    justify-content: space-between;
+}
+
+.col-4{
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 5 / 6;
+    height: 95%;
+    justify-content: space-between;
+}
+
+.col-5{
+    display: flex;
+    grid-column: 1 / -1;
+    grid-row: 6;
+    height: 95%;
+    justify-content: space-between;
+}
+
+#valores{
+    font-size: 1.2em;
+}
+
+#resultado{
+    font-size: 2.5em;
 }
