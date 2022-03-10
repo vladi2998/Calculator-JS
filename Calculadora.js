@@ -1,18 +1,18 @@
 class Calculadora{
-    suma(x, y){
+    sumar(x, y){
         return x + y;
     }
 
-    resta(x, y){
+    restar(x, y){
         return x - y;
     }
 
-    mult(x, y){
+    multiplicar(x, y){
         return x*y;
     }
 
-    div(x, y){
-        if(x==0){
+    dividir(x, y){
+        if(y === 0){
             return("Error: division por 0")
         }
         else {

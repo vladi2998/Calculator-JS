@@ -5,7 +5,7 @@ class Display {
         this.calcu = new Calculadora();
         this.tipoOperacion = undefined;
         this.valorActual = '';
-        this.valorAnterior = '';
+        this.valorResultado = '';
         this.signos = {
             dividir: '/',
             multiplicar: 'x',
@@ -27,27 +27,59 @@ class Display {
 
     borrarTodo() {
         this.valorActual = '';
+        this.valorResultado = '';
         this.tipoOperacion = undefined
         this.imprimir();
     }
 
     operacion(operador){
-        if(this.tipoOperacion===operador || this.valorActual.includes('+') || this.valorActual.includes('-') || this.valorActual.includes('x' || this.valorActual.includes('/'))) return
-        this.valorActual = this.valorActual.toString() +  this.signos[operador].toString();
-        this.tipoOperacion = operador;
-        this.calcular();
+        if(this.valorActual.length == 0) return; 
+        console.log(this.valorActual[this.valorActual.length - 1])
+        if(this.tipoOperacion !== undefined && (
+            this.valorActual[this.valorActual.length - 1] === '+' ||
+            this.valorActual[this.valorActual.length - 1] === '-' ||
+            this.valorActual[this.valorActual.length - 1] === 'x' || 
+            this.valorActual[this.valorActual.length - 1] === '/'
+            )){
+                this.tipoOperacion = operador;
+                let auxiliar = this.valorActual.slice(0 , -1)
+                this.valorActual = auxiliar + this.signos[operador].toString();
+                this.imprimir();
+                return;
+        }
+        if(this.tipoOperacion !== undefined){
+            let cantidadElementos = this.valorActual.split(this.signos[this.tipoOperacion].toString()).length;
+            console.log(cantidadElementos)
+            if(cantidadElementos >= 1){
+                let seCalculo = this.calcular();
+                this.imprimir(seCalculo);
+                this.tipoOperacion = undefined;
+                return;
+            }
+        }
+        if(this.tipoOperacion === undefined){
+            if(operador === 'igual') return    
+            this.valorActual = this.valorActual.toString() + this.signos[operador].toString();
+            this.tipoOperacion = operador;
+        }
+        //this.calcular();
         this.imprimir();
     }
 
-    imprimir() {
+    imprimir(seCalculo = false) {
         this.displayValores.textContent = this.valorActual;
+        if(seCalculo){
+            this.displayResultado.textContent = this.valorResultado;
+        }
     }
 
     calcular() {
-        let index = this.valorActual.lastIndexOf(this.tipoOperacion);
-        let x = this.valorActual.slice(0, index);
-        let y = this.valorActual.slice(index);
-        console.log(x.toString())
-        console.log(y.toString())
+        if(this.tipoOperacion === 'igual') return
+        let [x, y] = this.valorActual.split(this.signos[this.tipoOperacion].toString());
+        x = parseInt(x);
+        y = parseInt(y);
+        this.valorActual = this.calcu[this.tipoOperacion](x,y).toString();
+        return true;
+        //console.log(x, y);
     }
 }
