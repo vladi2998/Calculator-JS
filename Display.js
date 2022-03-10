@@ -7,7 +7,7 @@ class Display {
         this.valorActual = '';
         this.valorAnterior = '';
         this.signos = {
-            dividir: '%',
+            dividir: '/',
             multiplicar: 'x',
             restar: '-',
             sumar: '+', 
@@ -32,8 +32,10 @@ class Display {
     }
 
     operacion(operador){
-        this.valorActual = operador;
+        if(this.tipoOperacion===operador || this.valorActual.includes('+') || this.valorActual.includes('-') || this.valorActual.includes('x' || this.valorActual.includes('/'))) return
+        this.valorActual = this.valorActual.toString() +  this.signos[operador].toString();
         this.tipoOperacion = operador;
+        this.calcular();
         this.imprimir();
     }
 
@@ -41,4 +43,11 @@ class Display {
         this.displayValores.textContent = this.valorActual;
     }
 
+    calcular() {
+        let index = this.valorActual.lastIndexOf(this.tipoOperacion);
+        let x = this.valorActual.slice(0, index);
+        let y = this.valorActual.slice(index);
+        console.log(x.toString())
+        console.log(y.toString())
+    }
 }
