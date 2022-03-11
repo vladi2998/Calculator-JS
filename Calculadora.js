@@ -1,5 +1,5 @@
 class Calculadora{
-    sumar(x, y){
+    sumar(x = 0, y = 0){
         return x + y;
     }
 
