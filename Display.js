@@ -11,6 +11,7 @@ class Display {
             multiplicar: 'x',
             restar: '-',
             sumar: '+', 
+            igual: '',
         }
     }
 
@@ -33,8 +34,8 @@ class Display {
     }
 
     operacion(operador){
+        
         if(this.valorActual.length == 0) return; 
-        console.log(this.valorActual[this.valorActual.length - 1])
         if(this.tipoOperacion !== undefined && (
             this.valorActual[this.valorActual.length - 1] === '+' ||
             this.valorActual[this.valorActual.length - 1] === '-' ||
@@ -49,13 +50,13 @@ class Display {
         }
         if(this.tipoOperacion !== undefined){
             let cantidadElementos = this.valorActual.split(this.signos[this.tipoOperacion].toString()).length;
-            console.log(cantidadElementos)
             if(cantidadElementos >= 1){
-                let seCalculo = this.calcular();
-                this.imprimir(seCalculo);
-                this.tipoOperacion = undefined;
-                return;
+                    let seCalculo = this.calcular();
+                    this.imprimir(seCalculo);
+                    this.tipoOperacion = undefined;
+                    return;
             }
+            //return;
         }
         if(this.tipoOperacion === undefined){
             if(operador === 'igual') return    
@@ -74,12 +75,25 @@ class Display {
     }
 
     calcular() {
-        if(this.tipoOperacion === 'igual') return
-        let [x, y] = this.valorActual.split(this.signos[this.tipoOperacion].toString());
-        x = parseInt(x);
-        y = parseInt(y);
+        if(this.tipoOperacion === 'igual') return;
+        let x, y, xf, yf;
+        if(this.valorActual[0] === '-' && this.tipoOperacion === 'restar'){
+            [xf, x,  y ,yf] = this.valorActual.split(this.signos[this.tipoOperacion].toString())        
+            x = '-' + x;
+        }else{
+            [x, y] = this.valorActual.split(this.signos[this.tipoOperacion].toString());
+        }
+        if(this.tipoOperacion === 'multiplicar' || this.tipoOperacion === 'dividir'){
+            if(x === undefined) x = 1;
+            if(y === undefined) y = 1;
+        } else {
+            if(x === undefined) x = 0;
+            if(y === undefined) y = 0;
+        }
+        x = parseFloat(x);
+        y = parseFloat(y);
         this.valorActual = this.calcu[this.tipoOperacion](x,y).toString();
         return true;
-        //console.log(x, y);
+        
     }
 }
